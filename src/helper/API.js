@@ -1,1 +1,1 @@
-export const apiURL = 'https://pandey-task-manager-api.herokuapp.com';
+export const apiURL = 'http://pandey-task-manager-api.herokuapp.com';
