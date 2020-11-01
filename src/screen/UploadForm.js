@@ -39,7 +39,7 @@ export default class UploadForm extends React.Component {
                         <div className="upload-form">
                             <h3 className="section-title">Upload News</h3>
                             <p>Name of Intern : {name}</p>
-                    <b><p><span style={{ color: "red" }}>*</span> Enter Article below  :- {this.state.news}</p></b>
+                    <b><p><span style={{ color: "red" }}>*</span> Enter Article below  :- </p></b>
                             <textarea defaultValue={""} value={this.state.news} onChange={e=>this.setState({news:e.target.value})} />
                             <p><span style={{ color: "red" }}>*</span> Required fields must be filled</p>
                             <nav id="test" onClick={this.handleUpload}>
