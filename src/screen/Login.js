@@ -43,6 +43,7 @@ export default class Login extends React.Component {
                 if (e.message) {
                     document.getElementById("test").style.visibility = "visible";
                     console.log("Login Failed");
+		    this.setState({isLoading:false});
                 } else {
                     return ""
                 }
@@ -54,7 +55,7 @@ export default class Login extends React.Component {
                 <h3 className="section-title">Login</h3>
                 <p><span style={{ color: "red" }}>*</span> Email : {this.state.email}</p>
                 <input type="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
-                <p><span style={{ color: "red" }}>*</span> Password : {this.state.password}</p>
+                <p><span style={{ color: "red" }}>*</span> Password : </p>
                 <input type="password" value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} />
                 <p><span style={{ color: "red" }}>*</span> Required fields must be filled</p>
                 <p>{this.state.isLoading ? "Please Wait" : ""}</p>
