@@ -22,7 +22,11 @@ export default class UploadForm extends React.Component {
             headers: {
                 Authorization: 'Bearer ' + Auth //the token is a variable which holds the token
               }
-        }).then(res=>console.log(res))
+        }).then(res=>{
+            console.log(res);
+            alert("Hurray!!News has been uploaded successfully.Your News will be verified soon");
+            
+        }).then(()=>this.setState({news:""}))
         .catch(e=>console.log(e.message))
     }
     render() {
