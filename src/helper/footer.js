@@ -5,11 +5,11 @@ export const Footer = () => {
             <div className="footer">
                 <div className="footer-logo">The E-Guardians</div>
                 <div className="footer-list">
-                    <ul>
+                    {/* <ul>
                         <li>About</li>
                         <li>Jobs</li>
                         <li>Contact us</li>
-                    </ul>
+                    </ul> */}
                 </div>
             </div>
 

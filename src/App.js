@@ -1,4 +1,5 @@
-import './App.css';
+// import './App.css';
+import './stylesheet.css';
 import React from 'react';
 import { Base } from './screen/Base';
 import UploadForm from './screen/UploadForm';

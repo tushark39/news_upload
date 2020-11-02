@@ -36,7 +36,8 @@ export default class Login extends React.Component {
                 }
             })
             .then(()=>{
-                window.location.reload()
+                window.location.reload();
+                // document.getElementById("logout-head").style.visibility ="visible"
             })
             // .catch(e=>e.message ?   : "")
             .catch(e=>{

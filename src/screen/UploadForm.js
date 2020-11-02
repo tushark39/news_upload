@@ -3,10 +3,6 @@ import { Auth, Name } from '../helper/Auth';
 import Login from './Login'
 import axios from 'axios'
 import { apiURL } from '../helper/API';
-
-// export const UploadForm = () => {
-
-// }   
 export default class UploadForm extends React.Component {
     constructor(props){
         super(props);
@@ -33,7 +29,7 @@ export default class UploadForm extends React.Component {
         let isAuthenticated = Auth
         let name = Name
         return (
-            <div>
+            <div style={{marginTop:50,marginBottom:50}}>
                 {
                     isAuthenticated && (
                         <div className="upload-form">
