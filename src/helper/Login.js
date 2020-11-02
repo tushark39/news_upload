@@ -1,5 +1,5 @@
 import React from 'react'
-import { apiURL } from '../helper/API';
+import { apiURL } from './API';
 import axios from 'axios'
 export default class Login extends React.Component {
     constructor(props) {
@@ -52,7 +52,9 @@ export default class Login extends React.Component {
     }
     render() {
         return (
-            <div className="upload-form">
+           <div>
+               {/* <div>hi</div> */}
+                <div className="upload-form">
                 <h3 className="section-title">Login</h3>
                 <p><span style={{ color: "red" }}>*</span> Email : {this.state.email}</p>
                 <input type="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
@@ -69,6 +71,7 @@ export default class Login extends React.Component {
                     </ul>
                 </nav>
             </div>
+           </div>
         )
     }
 }
