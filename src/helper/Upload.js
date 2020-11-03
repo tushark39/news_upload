@@ -9,23 +9,24 @@ export default class Upload extends React.Component {
             news: "",
             completed: 0,
             pending: 0,
-            name: "",
-            heading: "Dummy",
-            Desc: "Dummmy",
-            data: []
+            data: [],
+            activeTask: [],
         }
     }
     async componentDidMount() {
-        // axios.get("https://api.jsonbin.io/b/5fa06e8447077d298f5bdbdc")
-        // .then(res=>{
-        //     this.setState({name:res.data.name,Desc:res.data.Desc,heading:res.data.Heading})
-        // })
-        // .catch(e=>console.log("Error from Card ",e));
-        await axios.get("https://api.jsonbin.io/b/5fa06e8447077d298f5bdbdc")
-            .then(res => {
-                this.setState({ data: res.data })
-            })
-            .catch(e => console.log("Error from Data ", e))
+        await axios.get(`https://api.jsonbin.io/b/5fa06e8447077d298f5bdbdc/2`)
+            .then(async (res) => {
+                this.setState({ data: res.data });
+            }
+            )
+            .catch(e => console.log("Error from Card ", e));
+        this.setData();
+    }
+
+    setData = () => {
+        var data = this.state.data;
+        var activeTask = data.filter((task) => task.active === true)
+        this.setState({ activeTask })
     }
     handleUpload = () => {
         axios.post(`${apiURL}/tasks`, {
@@ -33,7 +34,7 @@ export default class Upload extends React.Component {
             "completed": false
         }, {
             headers: {
-                Authorization: 'Bearer ' + Auth //the token is a variable which holds the token
+                Authorization: 'Bearer ' + Auth
             }
         }).then(res => {
             console.log(res);
@@ -69,19 +70,25 @@ export default class Upload extends React.Component {
                                             <div className="col">Pending</div>
                                         </div>
                                     </div>
-                                    <div className="card text-white bg-primary mb-3" style={{ marginTop: 30 }}>
-                                        <div className="card-header">Your Current Task</div>
-                                        <div className="card-body">
-                                            <h4 className="card-title">{this.state.heading}</h4>
-                                            <p className="card-text">{this.state.Desc}</p>
-                                        </div>
-                                    </div>
+                                    {
+                                        this.state.activeTask.map(res => {
+                                            return (
+                                                <div className="card text-white bg-primary mb-3" style={{ marginTop: 30 }}>
+                                                    <div className="card-header">Your Current Task</div>
+                                                    <div className="card-body">
+                                                        <h4 className="card-title">{res.Heading}</h4>
+                                                        <p className="card-text">{res.Desc}</p>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
                                 </div>
 
                             </div>
                             <div style={{ borderStyle: "solid", paddingTop: 50, textAlign: "center" }} className="col-md-6">
 
-                                <b><p><span style={{ color: "red" }}>*</span> Enter Article below  :- </p></b>
+                                <b><p><span style={{ color: "red" }}>*</span> Enter News below  :- </p></b>
                                 <textarea rows="10" placeholder="Enter News Here" defaultValue={""} value={this.state.news} onChange={e => this.setState({ news: e.target.value })} />
                                 <p><span style={{ color: "red" }}>*</span> Required fields must be filled</p>
                                 <nav id="test" onClick={this.handleUpload}>
@@ -95,7 +102,21 @@ export default class Upload extends React.Component {
 
                             </div>
                             <div style={{ borderStyle: "solid", paddingTop: 50, textAlign: "center" }} className="col-md-3">
-
+                                <h3>Your Last Three Accepted News</h3>
+                                {this.state.data.filter((data)=>data.active!==true).slice(0, 3).map((res) => {
+                                    // console.log("Data : ",res);
+                                    return (
+                                        <div>
+                                            <div className="card text-white bg-primary mb-3" style={{ marginTop: 30 }}>
+                                                <div className="card-header">{res.name}</div>
+                                                <div className="card-body">
+                                                    <h4 className="card-title">{res.Heading}</h4>
+                                                    <p className="card-text">{res.Desc}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })}
                             </div>
                         </div>
                     </div>
