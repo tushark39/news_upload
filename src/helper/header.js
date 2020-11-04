@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { Auth } from './Auth';
 export const Header = () => {
     const onClickHandler = (next) => {
@@ -7,7 +8,7 @@ export const Header = () => {
         next();
     }
     return (
-        <header>
+        <header className="newsHeader">
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
 
                 <a className="navbar-brand" href="/">The E-Guardians</a>
@@ -17,14 +18,19 @@ export const Header = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
+                            <Link to={`${process.env.PUBLIC_URL}`}><a className="nav-link" href="">Home <span className="sr-only">(current)</span></a></Link>
                         </li>
+                        {
+                            Auth && <li className="nav-item" >
+                               <a className="nav-link" href={`${process.env.PUBLIC_URL}/profile`}>My Profile</a>
+                             </li>
+                        }
                         <li className="nav-item">
-                            <a className="nav-link" href="#">About us</a>
+                        <Link to={`${process.env.PUBLIC_URL}/about`}><a className="nav-link" href="">About us</a></Link>
                         </li>
                         {
                             Auth && <li className="nav-item" onClick={() => { onClickHandler(() => window.location.reload()) }}>
-                               <a className="nav-link" href="#">Logout</a>
+                               <a className="nav-link" href="">Logout</a>
                              </li>
                         }
                     </ul>

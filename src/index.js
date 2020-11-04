@@ -3,11 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+  } from 'react-router-dom';
+import { About } from './screen/About';
+import { MyProfile } from './screen/MyProfile';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <Switch>
+    <Route exact path={process.env.PUBLIC_URL} component={App} />
+    <Route path={`${process.env.PUBLIC_URL}/about`} component={About} /> 
+    <Route path={`${process.env.PUBLIC_URL}/profile`} component={MyProfile} /> 
+    </Switch>
+  </Router>,
   document.getElementById('root')
 );
 

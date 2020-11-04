@@ -12,7 +12,7 @@ export default class Upload extends React.Component {
             pending: 0,
             data: [],
             activeTask: [],
-            profileImage:[]
+            profileImage: []
         }
     }
     async componentDidMount() {
@@ -45,33 +45,30 @@ export default class Upload extends React.Component {
         }).then(() => this.setState({ news: "" }))
             .catch(e => console.log(e.message))
     }
-   
-    uploadImage=(e)=>{
-        const files = Array.from(e.target.files);
-        const formData = new FormData()
-        files.forEach((file, i) => {
-            formData.append(i, file)
-          })
 
-          fetch(`${apiURL}/users/me/avatar`, {
-            method: 'POST',
-            headers:{
-                Authorization: 'Bearer ' + Auth
-            },
-            body: formData
-          })
-          .then(res => res.json())
-          .then(images => {
-            this.setState({profileImage:images})
-          })
-          .catch(e=>console.log(e))
-          .catch(e=>console.log(e))
+    uploadImage = (e) => {
+        // const files = Array.from(e.target.files);
+        // const formData = new FormData()
+        // files.forEach((file, i) => {
+        //     formData.append(i, file)
+        //   })
 
-
-        }  
+        //   fetch(`${apiURL}/users/me/avatar`, {
+        //     method: 'POST',
+        //     headers:{
+        //         Authorization: 'Bearer ' + Auth
+        //     },
+        //     body: formData
+        //   })
+        //   .then(res => res.json())
+        //   .then(images => {
+        //     this.setState({profileImage:images})
+        //   })
+        //   .catch(e=>console.log(e))
+        //   .catch(e=>console.log(e))
 
 
-
+    }
     render() {
         let name = Name;
         return (
@@ -88,8 +85,8 @@ export default class Upload extends React.Component {
                                     </div>
                                     <div className="col-12">
                                         <div style={{ marginLeft: 60, marginTop: -30 }} className="col">
-                                            <button type="file" onChange={this.uploadImage} style={{borderRadius:50,height:60,width:60}}>
-                                            <img src={uploadImage} style={{ height: 45, width: 45,borderRadius:50 }} alt="" />
+                                            <button type="file" onChange={this.uploadImage} style={{ borderRadius: 50, height: 60, width: 60 }}>
+                                                <img src={uploadImage} style={{ height: 45, width: 45, borderRadius: 50 }} alt="" />
                                             </button>
                                         </div>
                                     </div>

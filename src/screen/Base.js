@@ -3,10 +3,10 @@ import {Footer} from '../helper/footer'
 import {Header} from '../helper/header'
 export const Base = ({children}) => {
     return (
-        <section>
+        <div>
             <Header />
               {children}
             <Footer/>
-        </section>
+        </div>
     );
 }
